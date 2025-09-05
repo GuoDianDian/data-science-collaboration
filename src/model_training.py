@@ -134,6 +134,23 @@ class ModelTrainer:
         logger.info(f"Best model: {best_model_name} with score: {self.model_scores[best_model_name]:.4f}")
         
         return self.models
+
+"""Model training utilities."""
+
+from sklearn.ensemble import RandomForestClassifier
+
+
+def train_model(X_train, y_train):
+    """Train a machine learning model."""
+    # Use Random Forest with specific parameters
+    model = RandomForestClassifier(
+        n_estimators=100,
+        max_depth=10,
+        random_state=42
+    )
+    model.fit(X_train, y_train)
+    return model
+
     
     def hyperparameter_tuning(self, X_train: pd.DataFrame, y_train: pd.Series, 
                             model_name: str = 'RandomForest') -> Any:
